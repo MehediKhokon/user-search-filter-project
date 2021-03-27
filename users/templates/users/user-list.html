@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4 col-md-4">
+			<h3 class="mb-3">Filter Users</h3>
+			{# gender #}
+			<div class="gender">
+				<h6>Filter by gender</h6>
+				<div class="form-check checkbox">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" rel="male" onchange="change();" >
+					<label class="form-check-label" for="flexCheckChecked">
+						male ({{male_count}})
+
+					</label>
+				</div>
+				<div class="form-check checkbox">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" rel="female" onchange="change();" >
+					<label class="form-check-label" for="flexCheckChecked">
+						female ({{female_count}})
+					</label>
+				</div>
+			</div>
+
+			{# department #}
+			<div class="department mt-4">
+				<h6>Filter by Department</h6>
+				<div class="form-check checkbox">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" rel="frontend" onchange="change();" >
+					<label class="form-check-label" for="flexCheckChecked">
+						Frontend ({{front_count}})
+
+					</label>
+				</div>
+				<div class="form-check checkbox">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" rel="backend" onchange="change();" >
+					<label class="form-check-label" for="flexCheckChecked">
+						Backend ({{back_count}})
+					</label>
+				</div>
+				<div class="form-check checkbox">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" rel="qa" onchange="change();" >
+					<label class="form-check-label" for="flexCheckChecked">
+						QA ({{qa_count}})
+					</label>
+				</div>
+			</div>
+
+			{# expertise #}
+			<div class="experience mt-4">
+				<h6>Filter by Expertise</h6>
+				<div class="form-check checkbox">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" rel="beginner" onchange="change();" >
+					<label class="form-check-label" for="flexCheckChecked">
+						beginner ({{beg_count}})
+
+					</label>
+				</div>
+				<div class="form-check checkbox">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" rel="intermediate" onchange="change();" >
+					<label class="form-check-label" for="flexCheckChecked">
+						Intermediate ({{inter_count}})
+					</label>
+				</div>
+				<div class="form-check checkbox">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" rel="expert" onchange="change();" >
+					<label class="form-check-label" for="flexCheckChecked">
+						Expert ({{exp_count}})
+					</label>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		{# result #}
+		<div class="col-sm-8 col-md-8">
+			{% for user in users %}
+			<div class="result">
+				<div class="card mb-3 {{user.gender}} {{user.department}} {{user.experience}}">
+
+					<h5 class="card-header text-center mt-1 ">{{user.first_name}} {{user.last_name}}</h5>
+					<div class="card-body">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">Gender: {{user.gender| title}}</li>
+							<li class="list-group-item">Age: {{user.age}}</li>
+							<li class="list-group-item">Department: {{user.department | title}}</li>
+							<li class="list-group-item">Expertise level: {{user.experience | title}}</li>
+						</ul>
+					</div>
+
+					<div class="card-footer">
+						<small class="text-muted">Date joined: {{user.joined}}</small>
+					</div>
+				</div>
+			</div>
+
+			{% endfor %}
+		</div>
+	</div>  
+</div>
+{% endblock content %}
